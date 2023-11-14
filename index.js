@@ -11,7 +11,7 @@ function init() {
     console.log(logoText);
 
     loadMainPrompts() {
-}
+}}
 
 function loadMainPrompts() {
     prompt({
@@ -133,7 +133,7 @@ function loadMainPrompts() {
     }
 }
 )    
-}        ]
+}]
 
 //View all employees
 function viewEmployees() {
@@ -167,3 +167,36 @@ function viewEmployeesByDepartment() {
             message: "Which department would you like to see employees for?",
             choices: departmentChoices
         }
+    ])
+      .then(res => db.findAllEmployeeByDepartment(res.departmentId))
+      .then(([rows]) => {
+        let employees = rows;
+        console.log("\n");
+        console.log(employees); 
+    })
+    .then(() => loadMainPrompts())
+    });
+} 
+//View all employees that report to a specific manager
+function viewEmployesByManager() {
+    db.findAllEmployees()
+        .then(([rows]) => {
+            let managers = rows;
+            const managerChoices = managers.map(({ id, first_name, Last_name}) => ({
+                name: ${first_name} ${last_name} ,
+                value: id           
+        })};
+
+    prompt([
+        {
+            type: "list",
+            name: "managerId",
+            message: "Which employee do you want to see direct reports for?",
+            choices: managerChoices
+        }
+    ])
+
+        }
+
+
+    ])
