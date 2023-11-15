@@ -84,7 +84,7 @@ function loadMainPrompts() {
 ]).then(res => {
     let choice = res.choice;
 
-    //call teh appropriate fucntion
+    //call teh appropriate function
     switch (choice) {
         case "VIEW_EMPLOYEES":
         viewEmployees();
@@ -183,7 +183,7 @@ function viewEmployesByManager() {
         .then(([rows]) => {
             let managers = rows;
             const managerChoices = managers.map(({ id, first_name, Last_name}) => ({
-                name: ${first_name} ${last_name} ,
+                name: `${first_name} ${last_name}`,
                 value: id           
         })};
 
@@ -195,8 +195,40 @@ function viewEmployesByManager() {
             choices: managerChoices
         }
     ])
-
+    .then(res => db.findAllEmployeesByManager(res.managerId.))
+    .then(([rows]) => {
+        let employees = rows;
+        console.log("\n");
+        if (employees.length === 0) {
+          console.log("The selected employee has no direct reports");
+        } else {
+          console.table(employees);
         }
+    ))
+    .then(() => loadMainPrompts())
+    });
+}
 
+//Delete an employee
+function removeEmployee() {
+    db.findAllEmployee() {
+        .then(([rows]) => {
+            let employees = rows;
+            const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+                name: `${first_name} ${last_name}` ,
+                value: id
+    }));
 
+    prompt([
+        {
+            type: "list,
+            name: "employeeId",
+            
+        }
     ])
+        } )
+    }
+}
+
+
+    
