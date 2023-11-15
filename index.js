@@ -221,10 +221,23 @@ function removeEmployee() {
 
     prompt([
         {
-            type: "list,
+            type: "list",
             name: "employeeId",
-            
+            message: "Which employee do  you want to remove?",
+            choices: managerChoices
         }
+    ])    
+        
+        } let employees = rows;
+        console.log("\n");
+        if (employees.length === 0) {
+          console.log("The selected employee has no direct reports");
+        } else {
+          console.table(employees);
+        }
+    ))
+    .then(() => loadMainPrompts())
+    });
     ])
         } )
     }
