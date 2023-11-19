@@ -39,7 +39,7 @@ return this.connection.connection.promise().query {
 }
 //Update the given employee's manager
 this.updateEmployeeManager(employeeId, managerId) {
-    return this.connection.promise().query{
+    return this.connection.promise().query(
 "UPDATE employee SET manager_id = ? WHERE id = ?"
     {managerId, employeeId}
 );
