@@ -2,7 +2,7 @@ const inquirer = require("inquirer");
 const logo = require("asciiart-logo");
 const db = require("./db");
 
-Init();
+init();
 
 //Display logo text, load main prompts
 function init() {
@@ -170,8 +170,8 @@ function viewEmployeesByDepartment() {
         console.log(employees); 
     })
     .then(() => loadMainPrompts())
-    });
-} 
+}));
+
 //View all employees that report to a specific manager
 function viewEmployesByManager() {
     db.findAllEmployees()
@@ -181,7 +181,7 @@ function viewEmployesByManager() {
                 name: `${first_name} ${last_name}`,
                 value: id           
         }));
-    
+        }
         return inquirer.prompt([
         {
             type: "list",
@@ -201,7 +201,7 @@ function viewEmployesByManager() {
         }
     })
     .then(() => loadMainPrompts())
-});
+};
 
 //Delete an employee
 function removeEmployee() {
@@ -249,8 +249,8 @@ function updateEmployeeRole() {
             db.findAllRoles()
                 .then(([rows]) =>{
                   let roles = rows;
-                  const roleChoices =roles.map(({ id, title }) => ({
-                    name: title;
+                  const roleChoices = roles.map(({ id, title }) => ({
+                    name: title,
                     value: id            
                   }));
 
@@ -284,7 +284,7 @@ function updateEmployeeRole() {
                     type: "list",
                     name: "employeeId",
                     message: "Which employee's manager do you want to update?",
-                    choices: employeeChoices}
+                    choices: employeeChoices
                 }
             ])
                  .then(res => {
@@ -297,7 +297,7 @@ function updateEmployeeRole() {
                         value: id
                         }));
                     
-                        return inquirer.prompt([  prompt([
+                        return inquirer.prompt([  
                        {
                     type: "list",
                     name: "roleId",
@@ -356,3 +356,62 @@ function addRole() {
           })
         })
     }
+
+    //Delete a role
+    function removeRole() {
+        db.findAllRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        const roleChoices = roles.map(({ id, title }) => ({
+            name: title,
+            value: id
+        }));
+
+        return inquirer.prompt([
+        {
+            type: "title",
+            name: "roleId",
+            message: "Which role do you want to remove? (Warning: This will also remove employees",
+            choices: roleChoices
+        }
+        ])
+            .then(res => db.removeRole(res.roleId))
+            .then(() => console.log("Removed role from the database"))
+            .then(() => loadMainPrompts())
+          })
+        }
+//View all departments
+function viewDepartments() {
+    db.findAllDepartments()
+    .then(([rows]) => {
+        let departments = rows;
+        console.log('\n');
+        console.table(departments);
+    })
+        .then(() => loadMainPrompts());
+}
+    
+// Add a department
+function addDepartment() {
+   return inquirer.prompt([
+    {
+        name: "name",
+        message: "What is the name of the Department?"   
+    }
+   ])
+   .then(res => {
+     let name = res;
+    db.createDepartment(name)
+   .then(() => console.log(`Added $(name.name) to the database`))
+   .then(() => loadMainPrompts())
+    })
+}
+ // Delete a department
+function removeDepartment() {
+    db.findAllDepartment()
+    let departments = rows;
+    const departmentChoices = departments.map(({ id, name }) => ({
+        name: name,
+        value: id
+    }));
+    
