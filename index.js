@@ -421,8 +421,8 @@ function removeDepartment() {
         name: "departmentId",
         message: "Which department would you like to remove? (Warning: This will also remove associated roles and employees)",
         choices: departmentChoices
-    })
-}
+    });
+
 
 //View all departments and show their total utilized department budget
 function viewUtilizedBudgetDepartment() {
@@ -433,7 +433,8 @@ function viewUtilizedBudgetDepartment() {
         console.table(departments);
     })
         .then(() => loadMainPrompts());
-    )}
+}})
+
 
 //Add an employee
 function addEmployee() {
@@ -502,7 +503,7 @@ function addEmployee() {
             })
      })
     }
-    
+}
     //Exit the aplication
     function quit() {
         console.log("Goodbye!");
