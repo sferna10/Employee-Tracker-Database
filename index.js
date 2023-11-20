@@ -409,9 +409,103 @@ function addDepartment() {
  // Delete a department
 function removeDepartment() {
     db.findAllDepartment()
+    .then(([rows]) => {
     let departments = rows;
     const departmentChoices = departments.map(({ id, name }) => ({
         name: name,
         value: id
     }));
+
+    return inquirer.prompt({
+        type: "list",
+        name: "departmentId",
+        message: "Which department would you like to remove? (Warning: This will also remove associated roles and employees)",
+        choices: departmentChoices
+    })
+}
+
+//View all departments and show their total utilized department budget
+function viewUtilizedBudgetDepartment() {
+    db.viewDepartmentBudgets()
+    then(([rows]) => {
+        let departments = rows;
+        console.log('\n');
+        console.table(departments);
+    })
+        .then(() => loadMainPrompts());
+    )}
+
+//Add an employee
+function addEmployee() {
+    return inquirer.prompt([
+    {
+      name: "first_name",
+      message: "What is the employee's first name?",  
+    },
+    {
+      name: "last_name",
+      message: "What is the employee's last name?",  
+      },
+    ])
+     .then(res => {
+        let firstName = res.first_name;
+        let lastName = res.last_name;
+
+        db.findAllRoles()
+        .then(([rows]) => {
+        let roles = rows;
+        const roleChoices = roles.map(({ id, title }) => ({
+            name: title,
+            value: id
+}));
+    prompt({
+        type: "list",
+        name: "roleId",
+        message: "What is the employee's role",
+        choices: roleChoices
+    })
+        .then(res => {
+            let roleId = res.roleId;
+
+            db.findAllEmployees()
+                .then(([rows]) => {
+                  let employees = rows;
+                  const managerChoices = employees.map(({ id, first_name, last_name }) => ({
+                    name: `${first_name} ${last_name}`,
+                    value: id
+                }));
+
+                managerChoices.unshift({ name: "None", value: null });
+
+                return inquirer.prompt({
+                    type: "list",
+                    name: "managerId",
+                    message: "Who is the employee's manager?",
+                    choices: managerChoices
+                })
+                    .then(res => {
+                      let employee = {
+                        manager_id: res.managerId,
+                        role_id: roleId,
+                        first_name: firstName,
+                        last_name: lastName
+                      }
+                      
+                      db.createEmployee(employee);
+                    })
+                    .then(() => console.log(
+                        `Added ${firstName} ${lastName} to the database`
+                    ))
+                    .then(() => loadMainPrompts())
+                    })    
+                })
+            })
+     })
+    }
     
+    //Exit the aplication
+    function quit() {
+        console.log("Goodbye!");
+        process.exit();
+    }
+     
