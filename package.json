@@ -7,9 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Silvia Fernandez",
+  "license": "MIT",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "index.js": "^0.0.3",
+    "inquirer": "^8.2.4",
+    "node": "^21.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "sferna10"
   }
 }
