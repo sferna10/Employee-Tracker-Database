@@ -153,7 +153,7 @@ function viewEmployeesByDepartment() {
         const departmentChoices = departments.map (({ id, name }) => ({
             name: name,
             value: id
-})}
+})
 
     return inquirer.prompt([
         {
