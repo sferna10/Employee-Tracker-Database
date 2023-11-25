@@ -153,9 +153,10 @@ function viewEmployeesByDepartment() {
         const departmentChoices = departments.map (({ id, name }) => ({
             name: name,
             value: id
-})
+        ))}
+),
 
-    return inquirer.prompt([
+    .prompt([
         {
             type: "list",
             name: "departmentId",
@@ -163,17 +164,17 @@ function viewEmployeesByDepartment() {
             choices: departmentChoices
         }
     ])
-      .then(res => db.findAllEmployeeByDepartment(res.departmentId))
+      .then(res => db.findAllEmployeesByDepartment(res.departmentId))
       .then(([rows]) => {
         let employees = rows;
         console.log("\n");
         console.log(employees); 
     })
     .then(() => loadMainPrompts())
-}));
+});
 
 //View all employees that report to a specific manager
-function viewEmployesByManager() {
+function viewEmployeesByManager() {
     db.findAllEmployees()
         .then(([rows]) => {
             let managers = rows;
@@ -181,15 +182,15 @@ function viewEmployesByManager() {
                 name: `${first_name} ${last_name}`,
                 value: id           
         }));
-        }
-        return inquirer.prompt([
+        },
+        .prompt([
         {
             type: "list",
             name: "managerId",
             message: "Which employee do you want to see direct reports for?",
             choices: managerChoices
         }
-    ])
+    ]),
     .then(res => db.findAllEmployeesByManager(res.managerId))
     .then(([rows]) => {
         let employees = rows;
@@ -205,7 +206,7 @@ function viewEmployesByManager() {
 
 //Delete an employee
 function removeEmployee() {
-    db.findAllEmployee() 
+    db.findAllEmployees() 
         .then(([rows]) => {
             let employees = rows;
             const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
