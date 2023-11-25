@@ -14,8 +14,7 @@ function init() {
 }
 
 function loadMainPrompts() {
-  return inquirer
-    .prompt([
+    prompt([
       {
         type: "list",
         name: "choice",
@@ -38,7 +37,7 @@ function loadMainPrompts() {
             value: "ADD_EMPLOYEE",
           },
           {
-            Name: "Remove Employee",
+            name: "Remove Employee",
             value: "REMOVE_EMPLOYEE",
           },
           {
@@ -69,7 +68,10 @@ function loadMainPrompts() {
             name: "Add Department",
             value: "ADD_DEPARTMENT",
           },
-          { name: "Remove Department", value: "REMOVE_DEPARTMENT" },
+          { 
+            name: "Remove Department",
+           value: "REMOVE_DEPARTMENT" 
+          },
           {
             name: "View Total Utilized Budget By Department",
             value: "VIEW_UTILIZED_BUDGET_BY_DEPARTMENT",
@@ -211,7 +213,7 @@ function viewEmployeesByManager() {
         })
       );
 
-      prompt([
+    prompt([
         {
           type: "list",
           name: "employeeId",
@@ -235,7 +237,7 @@ function viewEmployeesByManager() {
         })
       );
 
-      prompt([
+    prompt([
         {
           type: "list",
           name: "employeeId",
@@ -251,7 +253,7 @@ function viewEmployeesByManager() {
             value: id,
           }));
 
-          prompt([
+    prompt([
             {
               type: "list",
               name: "roleId",
@@ -260,7 +262,7 @@ function viewEmployeesByManager() {
               choices: roleChoices,
             },
           ])
-            .them((res) => db.updateEmployeeRole(employeeId, res.roleId))
+            .then((res) => db.updateEmployeeRole(employeeId, res.roleId))
             .then(() => console.log("updated employee's role"))
             .then(() => loadMainPrompts());
         });
@@ -278,7 +280,7 @@ function viewEmployeesByManager() {
         })
       );
 
-      prompt([
+    prompt([
         {
           type: "list",
           name: "employeeId",
@@ -296,7 +298,7 @@ function viewEmployeesByManager() {
             })
           );
 
-          prompt([
+    prompt([
             {
               type: "list",
               name: "roleId",
@@ -305,7 +307,7 @@ function viewEmployeesByManager() {
               choices: managerChoices,
             },
           ])
-            .them((res) => db.updateEmployeeManager(employeeId, res.managerId))
+            .then((res) => db.updateEmployeeManager(employeeId, res.managerId))
             .then(() => console.log("updated employee's manager"))
             .then(() => loadMainPrompts());
         });
@@ -332,26 +334,28 @@ function viewEmployeesByManager() {
         value: id,
       }));
 
-      prompt([
-        {
-          type: "title",
-          name: "What is the name of the role?",
-        },
-        {
-          type: "salary",
-          name: "What is the salary of the role?",
-        },
-        {
-          type: "list",
-          name: "department_id",
-          message: "Which department does the role belong to?",
-          choices: departmentChoices,
-        },
-      ]).then((role) => {
-        db.createRole(role)
-          .then(() => console.log(`Added $(role.title) to thhe database`))
-          .then(() => loadMainPrompts());
-      });
+      
+    prompt([
+          {
+            name: "title",
+            message: "What is the name of the role?",
+          },
+          {
+            name: "salary",
+            message: "What is the salary of the role?",
+          },
+          {
+            type: "list",
+            name: "department_id",
+            message: "Which department does the role belong to?",
+            choices: departmentChoices,
+          },
+        ])
+        .then((role) => {
+          db.createRole(role)
+            .then(() => console.log(`Added $(role.title) to thhe database`))
+            .then(() => loadMainPrompts());
+        });
     });
   }
 
@@ -364,7 +368,7 @@ function viewEmployeesByManager() {
         value: id,
       }));
 
-      prompt([
+    prompt([
         {
           type: "title",
           name: "roleId",
@@ -392,16 +396,17 @@ function viewEmployeesByManager() {
   // Add a department
   function addDepartment() {
     prompt([
-      {
-        name: "name",
-        message: "What is the name of the Department?",
-      },
-    ]).then((res) => {
-      let name = res;
-      db.createDepartment(name)
-        .then(() => console.log(`Added $(name.name) to the database`))
-        .then(() => loadMainPrompts());
-    });
+        {
+          name: "name",
+          message: "What is the name of the Department?",
+        },
+      ])
+      .then((res) => {
+        let name = res;
+        db.createDepartment(name)
+          .then(() => console.log(`Added $(name.name) to the database`))
+          .then(() => loadMainPrompts());
+      });
   }
   // Delete a department
   function removeDepartment() {
@@ -412,13 +417,13 @@ function viewEmployeesByManager() {
         value: id,
       }));
 
-      prompt({
+    prompt({
         type: "list",
         name: "departmentId",
         message:
           "Which department would you like to remove? (Warning: This will also remove associated roles and employees)",
         choices: departmentChoices,
-      });
+    });
 
       //View all departments and show their total utilized department budget
       function viewUtilizedBudgetDepartment() {
@@ -433,7 +438,7 @@ function viewEmployeesByManager() {
 
     //Add an employee
     function addEmployee() {
-      prompt([
+    prompt([
         {
           name: "first_name",
           message: "What is the employee's first name?",
@@ -452,7 +457,7 @@ function viewEmployeesByManager() {
             name: title,
             value: id,
           }));
-          prompt({
+    prompt({
             type: "list",
             name: "roleId",
             message: "What is the employee's role",
@@ -471,7 +476,7 @@ function viewEmployeesByManager() {
 
               managerChoices.unshift({ name: "None", value: null });
 
-              prompt({
+    prompt({
                 type: "list",
                 name: "managerId",
                 message: "Who is the employee's manager?",
