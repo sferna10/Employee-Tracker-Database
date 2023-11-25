@@ -13,6 +13,6 @@ constructor(connection) {
     //Find all employees, join with roles and departments to display their roles, salaries, departments and managers
 findAllEmployees() {
     return this.connection.promise().query(
-        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department, names AS department, role.salary, CONCAT(manager, first_name, last_name)"
+        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department, names AS department, role.salary, CONCAT(manager.first_name, '',manager.last_name) AS manager"
     );
 }}
