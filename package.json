@@ -11,8 +11,10 @@
   "author": "Silvia Fernandez",
   "license": "MIT",
   "dependencies": {
+    "asciiart-logo": "^0.2.7",
     "inquirer": "^8.2.4",
-    "mysql2": "^3.6.3"
+    "mysql2": "^3.6.3",
+    "start": "^5.1.0"
   },
   "repository": {
     "type": "git",
