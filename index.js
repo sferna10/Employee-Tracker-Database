@@ -150,13 +150,12 @@ function viewEmployeesByDepartment() {
     db.findAllDepartments()
       .then(([rows]) => {
         let departments = rows;
-        const departmentChoices = departments.map (({ id, name }) => ({
+        const departmentChoices = departments.map(({ id, name }) => ({
             name: name,
             value: id
-        ))}
-),
+}));
 
-    .prompt([
+    prompt([
         {
             type: "list",
             name: "departmentId",
@@ -172,7 +171,7 @@ function viewEmployeesByDepartment() {
     })
     .then(() => loadMainPrompts())
 });
-
+}
 //View all employees that report to a specific manager
 function viewEmployeesByManager() {
     db.findAllEmployees()
@@ -182,15 +181,15 @@ function viewEmployeesByManager() {
                 name: `${first_name} ${last_name}`,
                 value: id           
         }));
-        },
-        .prompt([
+      
+        prompt([
         {
             type: "list",
             name: "managerId",
             message: "Which employee do you want to see direct reports for?",
             choices: managerChoices
         }
-    ]),
+    ])
     .then(res => db.findAllEmployeesByManager(res.managerId))
     .then(([rows]) => {
         let employees = rows;
@@ -202,7 +201,7 @@ function viewEmployeesByManager() {
         }
     })
     .then(() => loadMainPrompts())
-};
+});
 
 //Delete an employee
 function removeEmployee() {
@@ -214,7 +213,7 @@ function removeEmployee() {
                 value: id
     }));
 
-    return inquirer.prompt([
+    prompt([
         {
             type: "list",
             name: "employeeId",
@@ -237,7 +236,7 @@ function updateEmployeeRole() {
             value: id
 })); 
   
-    return inquirer.prompt([
+    prompt([
         {
             type: "list",
             name: "employeeId",
@@ -255,7 +254,7 @@ function updateEmployeeRole() {
                     value: id            
                   }));
 
-            return inquirer.prompt([
+    prompt([
         {
             type: "list",
             name: "roleId",
@@ -280,7 +279,7 @@ function updateEmployeeRole() {
                 value: id
             }));
 
-            return inquirer.prompt([
+    prompt([
                 {
                     type: "list",
                     name: "employeeId",
@@ -298,7 +297,7 @@ function updateEmployeeRole() {
                         value: id
                         }));
                     
-                        return inquirer.prompt([  
+    prompt([  
                        {
                     type: "list",
                     name: "roleId",
@@ -360,7 +359,7 @@ function addRole() {
 
     //Delete a role
     function removeRole() {
-        db.findAllRoles()
+    db.findAllRoles()
     .then(([rows]) => {
         let roles = rows;
         const roleChoices = roles.map(({ id, title }) => ({
@@ -368,7 +367,7 @@ function addRole() {
             value: id
         }));
 
-        return inquirer.prompt([
+    prompt([
         {
             type: "title",
             name: "roleId",
@@ -439,7 +438,7 @@ function viewUtilizedBudgetDepartment() {
 
 //Add an employee
 function addEmployee() {
-    return inquirer.prompt([
+    prompt([
     {
       name: "first_name",
       message: "What is the employee's first name?",  
@@ -479,7 +478,7 @@ function addEmployee() {
 
                 managerChoices.unshift({ name: "None", value: null });
 
-                return inquirer.prompt({
+    prompt({
                     type: "list",
                     name: "managerId",
                     message: "Who is the employee's manager?",
@@ -510,4 +509,4 @@ function addEmployee() {
         console.log("Goodbye!");
         process.exit();
     }
-     
+} 
