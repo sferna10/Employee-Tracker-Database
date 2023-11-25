@@ -23,7 +23,7 @@ findAllPossibleManagers(employeeId) {
 createEmployee(employee) {
     return this.connection.promise().query("INSERT INTO employee SET ?", employee);
 }
-//Remove an employee wiht the given id
+//Remove an employee with the given id
 removeEmployee(employeeId) {
     return this.connection.promise().query(
       "DELETE FROM  employee WHERE id = ?",
@@ -32,18 +32,19 @@ removeEmployee(employeeId) {
 }
 //Update the given employee's role
 updateEmployeeRole(employeeId, roleId) {
-return this.connection.connection.promise().query {
+    return this.connection.connection.promise().query (
     "UPDATE employee SET role_Id = ? WHERE id = ?",
-    {roleId, employeeId}
+    [roleId, employeeId]
 );
 }
 //Update the given employee's manager
-this.updateEmployeeManager(employeeId, managerId) {
+updateEmployeeManager(employeeId, managerId) {
     return this.connection.promise().query(
 "UPDATE employee SET manager_id = ? WHERE id = ?"
-    {managerId, employeeId}
+    [managerId, employeeId]
 );
 }
+
 //Find all roles, join with departments to display the department name
 findAllRoles() {
     return this.connection.promise().query(
@@ -91,7 +92,7 @@ findAllEmployeesByDepartment(departmentId) {
     );
 }
 //Find all employees by manager, join with departments and roles to display titles and department names
-this.findAllEmployeesByManager(managerId) {
+findAllEmployeesByManager(managerId) {
     return this.connection.promise().query(
         "SELECT employee.id, employee.first_name, employee.last_name, department.name AS department, role.title FROM employee LEFT JOIN role on role.id = ",
         managerId
