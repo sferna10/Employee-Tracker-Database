@@ -4,12 +4,6 @@ CREATE DATABASE employees_db;
 
 USE employees_db;
 
---See database in use--
-
-SELECT DATABASE();
-
---Create department--
-
 CREATE TABLE
     department (
         id INT NOT NULL AUTO_INCREMENT,
@@ -17,7 +11,6 @@ CREATE TABLE
         PRIMARY KEY (id)
     );
 
---Create role--
 
 CREATE TABLE
     role (
@@ -27,8 +20,6 @@ CREATE TABLE
         department_id INT NULL,
         PRIMARY KEY (id)
     );
-
---Create employee
 
 CREATE TABLE
     employee (

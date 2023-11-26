@@ -16,3 +16,4 @@ findAllEmployees() {
         "SELECT employee.id, employee.first_name, employee.last_name, role.title, department, names AS department, role.salary, CONCAT(manager.first_name, '',manager.last_name) AS manager"
     );
 }}
+
