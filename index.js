@@ -14,6 +14,7 @@ function init() {
 }
 
 function loadMainPrompts() {
+    inquirer.
     prompt([
       {
         type: "list",
