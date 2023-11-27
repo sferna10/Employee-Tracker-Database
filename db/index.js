@@ -1,4 +1,4 @@
-const connection = require("./connections");
+import connection from "./connections.js";
 
 class DB {
     //Keeping a reference to the connection on the class in case we need it later
@@ -100,4 +100,4 @@ findAllEmployeesByManager(managerId) {
 }
 }
 
-module.exports = new DB(connection);
+export default new DB(connection);
