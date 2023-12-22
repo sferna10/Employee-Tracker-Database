@@ -1,8 +1,8 @@
 const { prompt } = require("inquirer");
 const logo = require("asciiart-logo");
-const db = require("./db");
+const db = require("./Main/db");
 
-Infinity()
+init()
 
 //Display logo text, load main prompts
 function init() {
@@ -15,7 +15,7 @@ function init() {
 
 
 function loadMainPrompts() {
-  prompts([
+  prompt([
     {
 type: "list",
       name: "choice",
