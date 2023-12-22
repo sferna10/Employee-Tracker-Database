@@ -9,10 +9,11 @@ constructor(connection) {
     //Find all employees, join with roles and departments to display their roles, salaries, departments and managers
 findAllEmployees() {
     return this.connection.promise().query(
-        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department, names AS department, role.salary, CONCAT(manager.first_name, '', manager.last_name) AS manager"
+        "SELECT employee.id, employee.first_name, employee.last_name, role.title, department names AS department, role.salary, CONCAT(manager.first_name, ‘’, manager.last_name) AS manager FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN department d ON department.id = role.department_id LEFT JOIN employee manager ON manager.id = employee.manager_id",
     );
 }
 //Find all employees except the given employee id
+
 findAllPossibleManagers(employeeId) {
     return this.connection.promise().query(
         "SELECT id, first_name, last_name FROM employee WHERE id != ?",
@@ -88,14 +89,14 @@ removeDepartment(departmentId) {
 //Find all the employees in a given department, join with roles to display role titles
 findAllEmployeesByDepartment(departmentId) {
     return this.connection.promise().query(
-        "SELECT employee.id, employee.first_name, employee.last_name, role.title FROM employee LEFT JOIN role on employee.role_Id = role.id LEFT JOIN department on department.id",
+        "SELECT employee.id, employee.first_name, employee.last_name, role.title FROM employee LEFT JOIN role on employee.role_Id = role.id LEFT JOIN department on department.id FROM employee LEFT JOIN role on employee.role_id = role.id ",
         departmentId
     );
 }
 //Find all employees by manager, join with departments and roles to display titles and department names
 findAllEmployeesByManager(managerId) {
     return this.connection.promise().query(
-        "SELECT employee.id, employee.first_name, employee.last_name, department.name AS department, role.title FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN manager on manager.id",
+        "SELECT employee.id, employee.first_name, employee.last_name, department.name AS department, role.title FROM employee LEFT JOIN role on employee.role_id = role.id LEFT JOIN manager on manager.id FROM employee LEFT JOIN role on employee.role_id = role.id",
         managerId
     );
 }
