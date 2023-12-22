@@ -25,7 +25,7 @@ myqsl -u root -p
 source ./Main/db/schema.sql;
 source ./Main/db/seed.sql;
 
-
+```
 To run the application, type:
 
 npm start
@@ -34,7 +34,7 @@ npm start
 
 ## Usage
 
-It requires Inquirer and npm installed.
+In the terminal will be  a list of choices: 
 
 
 ## License 
