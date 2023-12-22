@@ -20,8 +20,13 @@ A very easy and useful command-line database  designed for company's tracking an
 ## Installation
 
 To install the necessary dependencies, run the following command:
+npm i
+myqsl -u root -p
+source ./Main/db/schema.sql;
+source ./Main/db/seed.sql;
 
-```
+
+To run the application, type:
 
 npm start
 
