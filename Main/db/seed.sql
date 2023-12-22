@@ -10,7 +10,7 @@ VALUES ("Finance");
 INSERT INTO department (name)
 VALUES ("Legal");
 
-NSERT INTO department (name)
+INSERT INTO department (name)
 VALUES ("HUMAN RESOURCES");
 
 
@@ -24,10 +24,10 @@ INSERT INTO role (title, salary, department_id)
 VALUES ("Salesperson", 80000, 1);
 
 INSERT INTO role (title,salary, department_id)
-VALUES ("Technitian, 56000, 1)
+VALUES ("Technitian", 56000, 1)
 
 
-/
+
 /* === || EMPLOYEE ARRAY || === */
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 /* John Doe - Sales Lead - Sales Department */
