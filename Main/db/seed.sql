@@ -1,15 +1,15 @@
 USE employees;
 
 /* === || DEPARTMENT ARRAY || === */
-INSERT INTO department (name)
+INSERT INTO department (names)
 VALUES ("Sales");
-INSERT INTO department (name)
+INSERT INTO department (names)
 VALUES ("Engineering");
-INSERT INTO department (name)
+INSERT INTO department (names)
 VALUES ("Finance");
-INSERT INTO department (name)
+INSERT INTO department (names)
 VALUES ("Legal");
-INSERT INTO department (name)
+INSERT INTO department (names)
 VALUES ("Human Resources");
 
 
@@ -22,7 +22,7 @@ VALUES ("Sales Lead", 95000, 1);
 INSERT INTO role (title, salary, department_id)
 VALUES ("Salesperson", 80000, 1);
 INSERT INTO role (title,salary, department_id)
-VALUES ("Technitian", 56000, 1)
+VALUES ("Technitian", 56000, 1);
 INSERT INTO role (title, salary, department_id)
 VALUES ("Sotware_Engineer", 120000, 2);
 INSERT INTO role (title, salary, department_id)
