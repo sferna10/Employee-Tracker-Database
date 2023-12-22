@@ -1,6 +1,7 @@
-const { prompt } = require("inquirer");
-const logo = require("asciiart-logo");
-const db = require("./Main/db");
+import  inquirer from "inquirer";
+import logo from  "asciiart-logo";
+import db from  "./Main/db/index.js";
+const {prompt} = inquirer
 
 init()
 
@@ -435,7 +436,7 @@ function viewEmployeesByManager() {
 
       //View all departments and show their total utilized department budget
       function viewUtilizedBudgetDepartment() {
-        db.viewDepartmentBudgets();
+        db.viewDepartmentBudgets()
         .then(([rows]) => {
           let departments = rows;
           console.log("\n");
