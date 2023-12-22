@@ -4,7 +4,7 @@
 
 ## Description
 
-A very and useful command-line database  designed for company' tracking and manage of personel.
+A very easy and useful command-line database  designed for company's tracking and management of personel.
 
 ## Table of Contents
 
@@ -23,14 +23,14 @@ To install the necessary dependencies, run the following command:
 
 ```
 
-npm i
+npm start
 
 ```
 
 ## Usage
 
 It requires Inquirer and npm installed.
-https://github.com/sferna10/Professional_README_generator/assets/139423719/2702d8c6-c31a-48ef-be67-56f7c5dda434
+
 
 ## License 
     
