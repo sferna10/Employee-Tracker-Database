@@ -34,11 +34,12 @@ npm start
 
 ## Usage
 
-The application can be accessed [here]( https://sferna10.github.io/Logo_designer/).
 
 In terminal will appear a list of questionnaires: What would you like to do? Which employee do you want to remove?  Which employee's role do you want to update? Which role do you want to assign the selected employee? What is the name of the role? What is the salary for the role? Which department does the role belong to? Who is the employee-manager? etc. The user will select and answer the corresponding information.
 
+![image](https://github.com/sferna10/Employee-Tracker-Database/assets/139423719/b1442fd6-dc8c-4f2a-bda4-748e65a5a074)
 
+![image](https://github.com/sferna10/Employee-Tracker-Database/assets/139423719/2189f5ee-63b3-44db-b867-9a363d1625e9)
 ## License 
     
         This project is licensed under the MIT license.
