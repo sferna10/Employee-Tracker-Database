@@ -4,7 +4,7 @@
 
 ## Description
 
-A very easy and useful command-line database  designed for company's tracking and management of personel.
+A very easy and useful command-line database designed for the company's tracking and management of personnel.
 
 ## Table of Contents
 
@@ -34,7 +34,7 @@ npm start
 
 ## Usage
 
-In the terminal will be  a list of choices: 
+In terminal will appear a list of questionnaires: What would you like to do? Which employee do you want to remove?  Which employee's role do you want to update? Which role do you want to assign the selected employee? What is the name of the role? What is the salary for the role? Which department does the role belong to? Who is the employee-manager? etc. The user will select and answer the corresponding information.
 
 
 ## License 
