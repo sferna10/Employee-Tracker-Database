@@ -34,6 +34,8 @@ npm start
 
 ## Usage
 
+The application can be accessed [here]( https://sferna10.github.io/Logo_designer/).
+
 In terminal will appear a list of questionnaires: What would you like to do? Which employee do you want to remove?  Which employee's role do you want to update? Which role do you want to assign the selected employee? What is the name of the role? What is the salary for the role? Which department does the role belong to? Who is the employee-manager? etc. The user will select and answer the corresponding information.
 
 
