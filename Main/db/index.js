@@ -62,7 +62,7 @@ removeRole(roleId) {
     return this.connection.promise().query("DELETE FROM role WHERE id = ?",  roleId);
 }    
  //Find all departments
-findAllDepartment() {
+findAllDepartments() {
     return this.connection.promise().query(
         "SELECT department.id, department.names FROM department;"
     );
